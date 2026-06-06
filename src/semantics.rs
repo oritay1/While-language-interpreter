@@ -14,6 +14,8 @@ pub fn solve_a(e: &AExp, s: &State) -> i32 {
         AExp::Mult(e1, e2) => solve_a(e1, s) * solve_a(e2, s),
         AExp::Sub(e1, e2) => solve_a(e1, s) - solve_a(e2, s),
         AExp::Iand(e1, e2) => solve_a(e1, s) & solve_a(e2, s),
+        AExp::Shr(e1, e2) => solve_a(e1, s) >> solve_a(e2, s),
+        AExp::Shl(e1, e2) => solve_a(e1, s) << solve_a(e2, s),
     }
 }
 
