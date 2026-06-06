@@ -17,6 +17,10 @@ pub fn nos(c: (Stm, State)) -> State {
         /* 
             please insert your implementation here
         */
+        Stm::Comp(s1,s2) => {
+            nos((*s1,state))
+            nos((*s2,state))
+        }
 
         // If: [if_tt] and [if_ff]
         Stm::If(b, s1, s2) => {
