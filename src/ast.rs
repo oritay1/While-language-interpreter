@@ -109,3 +109,47 @@ pub fn test4() -> Stm {
         )),
     )
 }
+
+pub fn test5() -> Stm {
+    // a := 84
+    let init_a = Stm::Ass("a".to_string(), AExp::Num(84));
+
+    // b := 22
+    let init_b = Stm::Ass("b".to_string(), AExp::Num(22));
+
+    // c := 0
+    let init_c = Stm::Ass("c".to_string(), AExp::Num(0));
+
+    // a := a << 1
+    let shift_a = Stm::Ass(
+        "a".to_string(),
+        AExp::Shl(Box::new(AExp::Var("a".to_string())), Box::new(AExp::Num(1)))
+    );
+
+    // b := b >> 1
+    let shift_b = Stm::Ass(
+        "b".to_string(),
+        AExp::Shr(Box::new(AExp::Var("b".to_string())), Box::new(AExp::Num(1)))
+    );
+
+    // The loop body: shift_a ; shift_b
+    let loop_body = Stm::Comp(Box::new(shift_a), Box::new(shift_b));
+    
+    // while !(b == 0) do loop_body
+    let while_loop = Stm::While(
+        BExp::Neg(Box::new(BExp::Aeq(AExp::Var("b".to_string()), AExp::Num(0)))),
+        Box::new(loop_body)
+    );
+    
+    // Now chain them all together: init_a ; (init_b ; (init_c ; while_loop))
+    Stm::Comp(
+        Box::new(init_a),
+        Box::new(Stm::Comp(
+            Box::new(init_b),
+            Box::new(Stm::Comp(
+                Box::new(init_c),
+                Box::new(while_loop)
+            ))
+        ))
+    )
+}
