@@ -10,6 +10,8 @@ pub enum AExp {
     Mult(Box<AExp>, Box<AExp>),
     Sub(Box<AExp>, Box<AExp>),
     Iand(Box<AExp>, Box<AExp>),
+    Shr(Box<AExp>, Box<AExp>),
+    Shl(Box<AExp>, Box<AExp>),
 }
 
 // Boolean Expressions (BExp)
@@ -33,7 +35,6 @@ pub enum Stm {
     If(BExp, Box<Stm>, Box<Stm>),
     While(BExp, Box<Stm>),
 }
-
 
 
 
