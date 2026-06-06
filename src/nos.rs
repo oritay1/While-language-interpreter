@@ -18,8 +18,8 @@ pub fn nos(c: (Stm, State)) -> State {
             please insert your implementation here
         */
         Stm::Comp(s1,s2) => {
-            nos((*s1,state))
-            nos((*s2,state))
+            let s_prime = nos((*s1, state));
+            nos((*s2,s_prime))
         }
 
         // If: [if_tt] and [if_ff]
@@ -33,14 +33,20 @@ pub fn nos(c: (Stm, State)) -> State {
 
         // While: [while_tt] and [while_ff]
         /* 
-            please insert your implementation here
+            We clone 'b' and 's' because we are going to use them over and over in each
+            loop iteration.
         */
         Stm::While(b,s) => {
+            // [while_tt]
             if solve_b(&b, &state) {
-                nos((*s,state))
+                // Do s
+                let s_prime = nos((*s.clone(), state));
+                // Continue loop
+                nos((Stm::While(b.clone(), s.clone()), s_prime))
             }
+            // [while_ff]
             else {
-                Skip
+                state
             }
         }
     }
