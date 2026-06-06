@@ -28,7 +28,7 @@ pub fn solve_b(e: &BExp, s: &State) -> BVal {
         BExp::Beq(e1, e2) => solve_b(e1, s) == solve_b(e2, s), 
         BExp::Aeq(e1, e2) => solve_a(e1, s) == solve_a(e2, s), 
         BExp::Gte(e1, e2) => solve_a(e1, s) >= solve_a(e2, s), 
-        BExp::And(e1, e2) => solve_a(e1, s) && solve_a(e2, s),
+        BExp::And(e1, e2) => solve_b(e1, s) && solve_b(e2, s),
     }
 }
 
