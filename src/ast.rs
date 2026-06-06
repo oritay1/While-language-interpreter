@@ -34,6 +34,7 @@ pub enum Stm {
     Comp(Box<Stm>, Box<Stm>),
     If(BExp, Box<Stm>, Box<Stm>),
     While(BExp, Box<Stm>),
+    DoWhile(Box<Stm>, BExp),
 }
 
 
