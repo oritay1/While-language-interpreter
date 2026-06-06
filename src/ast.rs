@@ -166,3 +166,36 @@ pub fn test6() -> Stm {
     // Do a-5 While(a!=0)
     Stm::DoWhile(Box::new(s), condition)
 }
+
+pub fn test7() -> Stm {
+    // condition: b >= 3
+    let condition = BExp::Gte(AExp::Var("b".to_string()) , AExp::Num(3));
+
+    // b := b << 1
+    let shift_b_left = Stm::Ass(
+        "b".to_string(),
+        AExp::Shl(Box::new(AExp::Var("b".to_string())), Box::new(AExp::Num(1)))
+    );
+
+    // b := b >> 1
+    let shift_b_right = Stm::Ass(
+        "b".to_string(),
+        AExp::Shr(Box::new(AExp::Var("b".to_string())), Box::new(AExp::Num(1)))
+    );
+    // if(b >= 3) { b := b shl 1} else { b := b rhl 1}
+    Stm::If(condition , Box::new(shift_b_left), Box::new(shift_b_right))
+}
+
+pub fn test8() -> Stm {
+    // c := c >> 1
+    let shift_c_right = Stm::Ass(
+        "c".to_string(),
+        AExp::Shr(Box::new(AExp::Var("c".to_string())), Box::new(AExp::Num(1)))
+    );
+
+    // while !(c == 0) do loop_body
+    Stm::While(
+        BExp::Neg(Box::new(BExp::Aeq(AExp::Var("c".to_string()), AExp::Num(0)))),
+        Box::new(shift_c_right)
+    )
+}
