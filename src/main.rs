@@ -3,7 +3,8 @@ mod ast;
 mod semantics;
 mod nos;
 
-use ast::{Stm, test1, test2, test3, test4, test5, test6, test7, test8, test9};
+//use ast::{Stm, test1, test2, test3, test4, test5, test6, test7, test8, test9};
+use ast::{Stm, test1, test2, test3, test4};
 use semantics::{State, s0, s1, s2};
 use nos::nos; 
 
