@@ -35,5 +35,13 @@ pub fn nos(c: (Stm, State)) -> State {
         /* 
             please insert your implementation here
         */
+        Stm::While(b,s) => {
+            if solve_b(&b, &state) {
+                nos((*s,state))
+            }
+            else {
+                Skip
+            }
+        }
     }
 }
