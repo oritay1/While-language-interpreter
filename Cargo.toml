@@ -1,0 +1,10 @@
+[package]
+name = "While-language-interpreter"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+[[bin]]
+name = "While-language-interpreter"
+path = "src/main.rs"

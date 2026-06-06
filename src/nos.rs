@@ -4,7 +4,7 @@ use crate::semantics::*;
 // The main Natural Operational Semantics function:
 // nos: (Stm, State) -> State
 pub fn nos(c: (Stm, State)) -> State {
-    let (stm, state) = c;
+    let (stm, state) = c; // Destructuring the tuple into 2 variables
 
     match stm {
         // Assignment: [ass]
