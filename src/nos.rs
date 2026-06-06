@@ -44,12 +44,12 @@ pub fn nos(c: (Stm, State)) -> State {
         }
 
         // DoWhile [Dowhile_tt] and [Dowhile_ff]
-        Stm::DoWhile(b,s) => {
+        Stm::DoWhile(s,b) => {
             // Do s
             let s_prime = nos((*s.clone(), state));
-            if solve_b(&b, &state == "tt") {
+            if solve_b(&b, &s_prime ) == "tt" {
                 // Continue loop
-                nos((Stm::DoWhile(b.clone(), s.clone()), s_prime))
+                nos((Stm::DoWhile(s.clone(), b.clone()), s_prime))
             }
             else {
                 s_prime

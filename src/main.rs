@@ -4,8 +4,8 @@ mod semantics;
 mod nos;
 
 //use ast::{Stm, test1, test2, test3, test4, test5, test6, test7, test8, test9};
-use ast::{Stm, test1, test2, test3, test4, test5};
-use semantics::{State, s0, s1, s2};
+use ast::{Stm, test1, test2, test3, test4, test5, test6, test7, test8};
+use semantics::{State, s0, s1, s2, s3};
 use nos::nos; 
 
 
@@ -37,4 +37,13 @@ fn main() {
     // test5 (Bit shifts) starting with s0
     run_test("test5", test5(), s0(), "a");
     run_test("test5", test5(), s0(), "b");
+
+    // test6 (DoWhile) starting with s3
+    run_test("test6", test6(), s3(), "a");
+
+    // test7 (If with shifts) starting with s3
+    run_test("test7", test7(), s3(), "b");
+
+    // test8 (While with shifts) starting with s3
+    run_test("test8", test8(), s3(), "c");
 }
