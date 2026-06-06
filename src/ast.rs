@@ -154,3 +154,15 @@ pub fn test5() -> Stm {
         ))
     )
 }
+
+pub fn test6() -> Stm {
+
+    // a = a - 5
+    let s = Stm::Ass("a".to_string(), AExp::Sub(Box::new(AExp::Var("a".to_string())),Box::new(AExp::Num(5))));
+
+    // a != 0
+    let condition = BExp::Neg(Box::new(BExp::Aeq(AExp::Var("a".to_string()), AExp::Num(0))));
+
+    // Do a-5 While(a!=0)
+    Stm::DoWhile(Box::new(s), condition)
+}
